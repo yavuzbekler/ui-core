@@ -1,0 +1,19 @@
+{
+  "name": "@yavuzbekler/tokens",
+  "version": "0.1.0",
+  "description": "Shared design tokens for yavuzbekler",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yavuzbekler/ui-core.git",
+    "directory": "packages/tokens"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./css": "./src/tokens.css"
+  },
+  "files": ["src"]
+}

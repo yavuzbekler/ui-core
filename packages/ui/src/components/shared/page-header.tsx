@@ -1,0 +1,22 @@
+// Sayfa başlığı ve aksiyon butonları
+interface PageHeaderProps {
+  title: string;
+  description?: string;
+  actions?: React.ReactNode;
+  children?: React.ReactNode;
+}
+
+export function PageHeader({ title, description, actions, children }: PageHeaderProps) {
+  const actionContent = actions || children;
+  return (
+    <div className="flex items-center justify-between">
+      <div>
+        <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
+        {description && (
+          <p className="mt-1 text-sm text-muted-foreground">{description}</p>
+        )}
+      </div>
+      {actionContent && <div className="flex items-center gap-2">{actionContent}</div>}
+    </div>
+  );
+}

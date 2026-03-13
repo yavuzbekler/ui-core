@@ -1,0 +1,104 @@
+/*
+ * @ui-core/tokens — CSS custom properties
+ * Source of truth for light/dark semantic tokens.
+ * Import in your app: @import "@ui-core/tokens/css";
+ *
+ * Defaults match the "default" style preset + "gray" background theme.
+ * ThemeProvider overrides these at runtime when user selects a different preset.
+ */
+
+:root {
+  --radius: 0.75rem;
+  --border-w: 1px;
+  --shadow-card: none;
+}
+
+/* ═══════════════════════════════════════════
+   LIGHT THEME
+   ═══════════════════════════════════════════ */
+:root, .light {
+  --background: #E8E8EC;
+  --foreground: #1A1A1C;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1C;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1C;
+
+  --primary: #4ADE80;
+  --primary-foreground: #0D0D0D;
+
+  --secondary: #F0F0F2;
+  --secondary-foreground: #1A1A1C;
+  --muted: #F0F0F2;
+  --muted-foreground: #6E6E73;
+  --accent: #F0F0F2;
+  --accent-foreground: #1A1A1C;
+
+  --destructive: #FF453A;
+  --destructive-foreground: #FFFFFF;
+
+  --border: #C7C7CC;
+  --input: #C7C7CC;
+  --ring: #4ADE80;
+
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  --sidebar: #E8E8EC;
+  --sidebar-foreground: #1A1A1C;
+  --sidebar-primary: #4ADE80;
+  --sidebar-primary-foreground: #0D0D0D;
+  --sidebar-border: #C7C7CC;
+  --sidebar-accent: #F0F0F2;
+  --sidebar-accent-foreground: #1A1A1C;
+  --sidebar-muted: #6E6E73;
+  --sidebar-ring: #4ADE80;
+}
+
+/* ═══════════════════════════════════════════
+   DARK THEME
+   ═══════════════════════════════════════════ */
+.dark {
+  --background: #0D0D0D;
+  --foreground: #FBFBFB;
+  --card: #1C1C1E;
+  --card-foreground: #FBFBFB;
+  --popover: #1C1C1E;
+  --popover-foreground: #FBFBFB;
+
+  --primary: #4ADE80;
+  --primary-foreground: #0D0D0D;
+
+  --secondary: #232325;
+  --secondary-foreground: #FBFBFB;
+  --muted: #1C1C1E;
+  --muted-foreground: #A3A3A3;
+  --accent: #232325;
+  --accent-foreground: #FBFBFB;
+
+  --destructive: #FF453A;
+  --destructive-foreground: #FBFBFB;
+
+  --border: #2C2C2E;
+  --input: #2C2C2E;
+  --ring: #4ADE80;
+
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+
+  --sidebar: #0D0D0D;
+  --sidebar-foreground: #FBFBFB;
+  --sidebar-primary: #4ADE80;
+  --sidebar-primary-foreground: #0D0D0D;
+  --sidebar-border: #2C2C2E;
+  --sidebar-accent: #1C1C1E;
+  --sidebar-accent-foreground: #FBFBFB;
+  --sidebar-muted: #A3A3A3;
+  --sidebar-ring: #4ADE80;
+}
