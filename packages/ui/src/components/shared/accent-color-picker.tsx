@@ -1,6 +1,7 @@
-// Vurgu rengi seçim bileşeni (5 renk dot)
+// Vurgu rengi seçim bileşeni
 'use client';
 
+import { Check } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useAccentColor } from '../providers/theme-provider';
 import { ACCENT_COLORS, ACCENT_COLOR_NAMES, type AccentColorName } from '../../lib/accentColors';
@@ -18,23 +19,53 @@ export function AccentColorPicker() {
   return (
     <div>
       <p className="mb-2 text-xs font-medium text-muted-foreground">Vurgu Rengi</p>
-      <div className="flex items-center gap-2">
-        {ACCENT_COLOR_NAMES.map((name) => {
+      <div className="flex flex-wrap items-center justify-center gap-1.5">
+        {ACCENT_COLOR_NAMES.map((name: AccentColorName) => {
           const pair = ACCENT_COLORS[name];
           const dotColor = isDark ? pair.dark : pair.light;
           const isSelected = accentColor === name;
+          const isLight = name === 'white' || (!isDark && name === 'gray');
           return (
             <button
               key={name}
               onClick={() => setAccentColor(name)}
               className={cn(
-                'h-6 w-6 rounded-full transition-all',
-                isSelected && 'ring-2 ring-foreground ring-offset-2 ring-offset-background',
-                name === 'white' && 'border border-border'
+                'group flex flex-col items-center gap-1 rounded-lg px-2 py-1.5 transition-colors',
+                isSelected
+                  ? 'bg-muted'
+                  : 'hover:bg-muted/50'
               )}
-              style={{ backgroundColor: dotColor }}
               title={ACCENT_LABELS[name]}
-            />
+            >
+              <span
+                className={cn(
+                  'relative flex h-8 w-8 items-center justify-center rounded-full transition-transform',
+                  isSelected && 'scale-110',
+                  name === 'white' && 'border border-border',
+                )}
+                style={{ backgroundColor: dotColor }}
+              >
+                {isSelected && (
+                  <Check
+                    className={cn(
+                      'h-4 w-4',
+                      isLight ? 'text-gray-800' : 'text-white',
+                    )}
+                    strokeWidth={3}
+                  />
+                )}
+              </span>
+              <span
+                className={cn(
+                  'text-[10px] font-medium leading-none',
+                  isSelected
+                    ? 'text-foreground'
+                    : 'text-muted-foreground',
+                )}
+              >
+                {ACCENT_LABELS[name]}
+              </span>
+            </button>
           );
         })}
       </div>

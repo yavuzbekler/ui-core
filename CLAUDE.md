@@ -7,8 +7,8 @@ ui-core/
 ├── packages/
 │   ├── tokens/    → @ui-core/tokens  (paylaşılan tema tokenları)
 │   └── ui/        → @ui-core/ui      (Radix UI + Tailwind component kütüphanesi)
-├── admin/         → Next.js 15 (port 3000) — Yönetim paneli
-├── web/           → Next.js 15 (port 3001) — Pazarlama sitesi
+├── admin/         → Next.js 15 (port 1500) — Yönetim paneli
+├── web/           → Next.js 15 (port 1501) — Pazarlama sitesi
 └── mobile/        → Expo + Gluestack UI
 ```
 
@@ -55,9 +55,9 @@ Her yeni component eklendiğinde aşağıdaki adımlar ZORUNLUDUR:
 ## Komutlar
 
 ```bash
-npm run dev:admin    # Admin dev server (port 3000)
-npm run dev:web      # Web dev server (port 3001)
-npm run dev:mobile   # Expo dev server
+npm run dev:admin    # Admin dev server (port 1500)
+npm run dev:web      # Web dev server (port 1501)
+npm run dev:mobile   # Expo dev server (port 1502)
 npm run build        # Tüm projeleri build et
 ```
 

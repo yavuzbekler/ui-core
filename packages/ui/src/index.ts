@@ -101,6 +101,34 @@ export {
   BLOCK_DEFAULT_CONFIGS,
 } from './lib/constants';
 
+// Neobrutalism components
+export {
+  NeoButton, neoButtonVariants,
+  NeoAlert, neoAlertVariants,
+  NeoBadge, NeoBadgeStatus, NeoBadgeDismiss, neoBadgeVariants,
+  NeoCard, NeoCardWindowHeader, NeoCardContent, neoCardVariants,
+  NeoAccordion, NeoAccordionItem, neoAccordionVariants,
+  NeoCheckbox, NeoCheckboxGroup,
+  NeoInput, NeoSearchInput,
+  NeoProgress, neoProgressBarVariants,
+  NeoSelect,
+  NeoTabs, neoTabsVariants,
+  NeoTextarea, neoTextareaVariants,
+} from './components/neobrutalism';
+export type {
+  NeoButtonProps,
+  NeoAlertProps,
+  NeoBadgeProps, NeoBadgeStatusProps, NeoBadgeDismissProps,
+  NeoCardProps,
+  NeoAccordionProps, NeoAccordionItemProps,
+  NeoCheckboxProps, NeoCheckboxGroupProps,
+  NeoInputProps, NeoSearchInputProps,
+  NeoProgressProps,
+  NeoSelectProps, NeoSelectOption, NeoSelectOptionGroup,
+  NeoTabsProps, NeoTabItem,
+  NeoTextareaProps,
+} from './components/neobrutalism';
+
 // Hooks
 export { useDebounce } from './hooks/use-debounce';
 export { usePagination } from './hooks/use-pagination';

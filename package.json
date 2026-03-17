@@ -12,7 +12,7 @@
   "scripts": {
     "dev:admin": "turbo run dev --filter=admin",
     "dev:web": "turbo run dev --filter=web",
-    "dev:mobile": "cd mobile && npx expo start",
+    "dev:mobile": "cd mobile && npx expo start --port 1502",
     "build": "turbo run build",
     "build:admin": "turbo run build --filter=admin",
     "build:web": "turbo run build --filter=web",
