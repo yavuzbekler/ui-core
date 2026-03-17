@@ -32,9 +32,20 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Debug info
+        run: |
+          echo "--- .npmrc ---"
+          cat ~/.npmrc || true
+          echo "--- changeset status ---"
+          npx changeset status || true
+          echo "--- npm whoami ---"
+          npm whoami --registry=https://npm.pkg.github.com || true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create Release PR or Publish
         id: changesets
-        uses: changesets/action@v2
+        uses: changesets/action@v1
         with:
           title: 'chore: version packages'
           commit: 'chore: version packages'
