@@ -16,7 +16,7 @@ function MenuItemLink({
   isActive,
   collapsed,
 }: {
-  item: { label: string; href: string; icon: any };
+  item: { label: string; href: string; icon: any; badge?: number };
   isActive: boolean;
   collapsed: boolean;
 }) {
@@ -25,7 +25,7 @@ function MenuItemLink({
     <Link
       href={item.href}
       className={cn(
-        'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium outline-none focus-visible:ring-0',
+        'relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium outline-none focus-visible:ring-0',
         isActive
           ? 'bg-primary text-primary-foreground'
           : 'text-muted-foreground hover:bg-accent hover:text-foreground'
@@ -33,7 +33,22 @@ function MenuItemLink({
       title={collapsed ? item.label : undefined}
     >
       <Icon className="h-5 w-5 shrink-0" />
-      {!collapsed && <span>{item.label}</span>}
+      {!collapsed && <span className="flex-1">{item.label}</span>}
+      {!collapsed && item.badge != null && item.badge > 0 && (
+        <span className={cn(
+          'ml-auto inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs font-semibold',
+          isActive
+            ? 'bg-primary-foreground/20 text-primary-foreground'
+            : 'bg-primary text-primary-foreground'
+        )}>
+          {item.badge > 99 ? '99+' : item.badge}
+        </span>
+      )}
+      {collapsed && item.badge != null && item.badge > 0 && (
+        <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[10px] font-bold text-destructive-foreground">
+          {item.badge > 99 ? '99+' : item.badge}
+        </span>
+      )}
     </Link>
   );
 }

@@ -10,6 +10,7 @@ export interface SidebarMenuItem {
   label: string;
   href: string;
   icon: LucideIcon;
+  badge?: number;
   packageCheck?: string;
   children?: SidebarMenuChild[];
 }
