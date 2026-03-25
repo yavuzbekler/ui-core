@@ -1,24 +1,28 @@
 // Header: breadcrumb + kullanıcı menüsü + bildirimler
 'use client';
 
+import Link from 'next/link';
 import { Menu, Bell, ExternalLink } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useStkUI } from '../../providers/stk-ui-provider';
 import { Breadcrumb } from './breadcrumb';
 import { UserNav } from './user-nav';
+import { Logo } from '../shared/logo';
 import type { UserProfile } from '../../types';
 
 interface HeaderProps {
   profile: UserProfile | null;
   onSignOut: () => void;
   siteUrl?: string | null;
+  isTopbar?: boolean;
 }
 
-export function Header({ profile, onSignOut, siteUrl }: HeaderProps) {
-  const { toggleSidebar } = useStkUI();
+export function Header({ profile, onSignOut, siteUrl, isTopbar }: HeaderProps) {
+  const { toggleSidebar, homePath } = useStkUI();
 
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background px-4 lg:px-6">
+      {/* Mobilde hamburger menü (her iki modda) */}
       <Button
         variant="ghost"
         size="icon"
@@ -28,6 +32,13 @@ export function Header({ profile, onSignOut, siteUrl }: HeaderProps) {
         <Menu className="h-5 w-5" />
         <span className="sr-only">Menü</span>
       </Button>
+
+      {/* Topbar modunda logo header'da gösterilir */}
+      {isTopbar && (
+        <Link href={homePath || '/dashboard'} className="hidden lg:flex items-center shrink-0">
+          <Logo />
+        </Link>
+      )}
 
       <Breadcrumb />
 

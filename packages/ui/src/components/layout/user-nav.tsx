@@ -19,6 +19,7 @@ import { ThemeToggle } from '../shared/theme-toggle';
 import { BackgroundThemePicker } from '../shared/background-theme-picker';
 import { AccentColorPicker } from '../shared/accent-color-picker';
 import { StylePicker } from '../shared/style-picker';
+import { MenuLayoutPicker } from '../shared/menu-layout-picker';
 import type { UserProfile } from '../../types';
 
 interface UserNavProps {
@@ -108,6 +109,9 @@ export function UserNav({ profile, onSignOut }: UserNavProps) {
               <div className="px-3 py-2">
                 <p className="mb-2 text-xs font-semibold text-muted-foreground">Tema</p>
                 <ThemeToggle />
+              </div>
+              <div className="px-3 py-2">
+                <MenuLayoutPicker />
               </div>
               <div className="px-3 py-2">
                 <StylePicker />

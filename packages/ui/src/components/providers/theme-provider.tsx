@@ -65,6 +65,26 @@ export function useStylePreset() {
   return useContext(StylePresetContext);
 }
 
+// ── Menu Layout Context ──
+
+export type MenuLayoutName = 'sidebar' | 'topbar';
+const MENU_LAYOUT_NAMES: MenuLayoutName[] = ['sidebar', 'topbar'];
+const DEFAULT_MENU_LAYOUT: MenuLayoutName = 'sidebar';
+
+type MenuLayoutContextValue = {
+  menuLayout: MenuLayoutName;
+  setMenuLayout: (l: MenuLayoutName) => void;
+};
+
+const MenuLayoutContext = createContext<MenuLayoutContextValue>({
+  menuLayout: DEFAULT_MENU_LAYOUT,
+  setMenuLayout: () => {},
+});
+
+export function useMenuLayout() {
+  return useContext(MenuLayoutContext);
+}
+
 // ── CSS variable keys that background theme controls ──
 
 const BG_CSS_VARS: Array<{ cssVar: string; paletteKey: keyof typeof BACKGROUND_THEMES.gray.dark }> = [
@@ -90,6 +110,7 @@ function ThemeApplier({ children }: { children: React.ReactNode }) {
   const [accentColor, setAccentState] = useState<AccentColorName>(DEFAULT_ACCENT);
   const [backgroundTheme, setBgThemeState] = useState<BackgroundThemeName>(DEFAULT_BACKGROUND_THEME);
   const [stylePreset, setStyleState] = useState<StylePresetName>(DEFAULT_STYLE_PRESET);
+  const [menuLayout, setMenuLayoutState] = useState<MenuLayoutName>(DEFAULT_MENU_LAYOUT);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -104,6 +125,10 @@ function ThemeApplier({ children }: { children: React.ReactNode }) {
     const savedStyle = localStorage.getItem('stk-style-preset');
     if (savedStyle && STYLE_PRESET_NAMES.includes(savedStyle as StylePresetName)) {
       setStyleState(savedStyle as StylePresetName);
+    }
+    const savedLayout = localStorage.getItem('stk-menu-layout');
+    if (savedLayout && MENU_LAYOUT_NAMES.includes(savedLayout as MenuLayoutName)) {
+      setMenuLayoutState(savedLayout as MenuLayoutName);
     }
     setMounted(true);
   }, []);
@@ -121,6 +146,11 @@ function ThemeApplier({ children }: { children: React.ReactNode }) {
   const setStylePreset = useCallback((s: StylePresetName) => {
     setStyleState(s);
     localStorage.setItem('stk-style-preset', s);
+  }, []);
+
+  const setMenuLayout = useCallback((l: MenuLayoutName) => {
+    setMenuLayoutState(l);
+    localStorage.setItem('stk-menu-layout', l);
   }, []);
 
   // Apply accent color CSS variables
@@ -190,7 +220,9 @@ function ThemeApplier({ children }: { children: React.ReactNode }) {
     <AccentContext.Provider value={{ accentColor, setAccentColor }}>
       <BackgroundThemeContext.Provider value={{ backgroundTheme, setBackgroundTheme }}>
         <StylePresetContext.Provider value={{ stylePreset, setStylePreset }}>
-          {children}
+          <MenuLayoutContext.Provider value={{ menuLayout, setMenuLayout }}>
+            {children}
+          </MenuLayoutContext.Provider>
         </StylePresetContext.Provider>
       </BackgroundThemeContext.Provider>
     </AccentContext.Provider>

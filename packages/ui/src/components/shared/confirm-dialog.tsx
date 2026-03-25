@@ -16,8 +16,8 @@ interface ConfirmDialogProps {
   confirmLabel?: string;
   /** İptal butonu etiketi */
   cancelLabel?: string;
-  /** Onaylandığında çağrılır */
-  onConfirm: () => void;
+  /** Onaylandığında çağrılır (async destekli) */
+  onConfirm: () => void | Promise<void>;
   /** Buton stili */
   variant?: 'default' | 'destructive';
   /** Yükleniyor durumu */
@@ -42,6 +42,7 @@ export function ConfirmDialog({
 }: ConfirmDialogProps) {
   const [internalOpen, setInternalOpen] = useState(false);
   const [direction, setDirection] = useState<'up' | 'down'>('down');
+  const [align, setAlign] = useState<'left' | 'right'>('left');
   const containerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -61,11 +62,15 @@ export function ConfirmDialog({
 
     const rect = containerRef.current.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
     const spaceBelow = viewportHeight - rect.bottom;
     const spaceAbove = rect.top;
+    const spaceRight = viewportWidth - rect.left;
 
     // Altta yeterli alan yoksa yukarı aç
     setDirection(spaceBelow < 200 && spaceAbove > spaceBelow ? 'up' : 'down');
+    // Sağda yeterli alan yoksa (w-72 = 288px) sağa hizala
+    setAlign(spaceRight < 300 ? 'right' : 'left');
   }, [isOpen]);
 
   // Dışarı tıklanınca kapat
@@ -90,9 +95,17 @@ export function ConfirmDialog({
     };
   }, [isOpen, setOpen]);
 
-  const handleConfirm = () => {
-    onConfirm();
-    if (!loading) setOpen(false);
+  const [internalLoading, setInternalLoading] = useState(false);
+  const busy = loading || internalLoading;
+
+  const handleConfirm = async () => {
+    try {
+      setInternalLoading(true);
+      await onConfirm();
+    } finally {
+      setInternalLoading(false);
+    }
+    setOpen(false);
   };
 
   return (
@@ -103,7 +116,8 @@ export function ConfirmDialog({
         <div
           ref={panelRef}
           className={cn(
-            'absolute left-0 z-50 w-72 rounded-lg border bg-card p-4 shadow-lg',
+            'absolute z-50 w-72 rounded-lg border bg-card p-4 shadow-lg',
+            align === 'right' ? 'right-0' : 'left-0',
             'animate-in fade-in-0 zoom-in-95 duration-200',
             direction === 'up'
               ? 'bottom-full mb-2 slide-in-from-bottom-2'
@@ -117,7 +131,7 @@ export function ConfirmDialog({
               size="sm"
               variant="outline"
               onClick={() => setOpen(false)}
-              disabled={loading}
+              disabled={busy}
             >
               {cancelLabel}
             </Button>
@@ -125,9 +139,9 @@ export function ConfirmDialog({
               size="sm"
               variant={variant}
               onClick={handleConfirm}
-              disabled={loading}
+              disabled={busy}
             >
-              {loading ? 'İşleniyor...' : confirmLabel}
+              {busy ? 'İşleniyor...' : confirmLabel}
             </Button>
           </div>
         </div>

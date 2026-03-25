@@ -42,13 +42,16 @@ function CollapsibleMenuItem({
   item,
   collapsed,
   activeHref,
+  isOpen,
+  onToggle,
 }: {
   item: SidebarMenuItem;
   collapsed: boolean;
   activeHref: string | null;
+  isOpen: boolean;
+  onToggle: () => void;
 }) {
   const isParentActive = item.children!.some(c => c.href === activeHref) || item.href === activeHref;
-  const [open, setOpen] = useState(isParentActive);
   const Icon = item.icon;
 
   if (collapsed) {
@@ -71,7 +74,7 @@ function CollapsibleMenuItem({
   return (
     <div>
       <button
-        onClick={() => setOpen(!open)}
+        onClick={onToggle}
         className={cn(
           'flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium outline-none',
           isParentActive
@@ -84,11 +87,11 @@ function CollapsibleMenuItem({
         <ChevronDown
           className={cn(
             'h-4 w-4 shrink-0 transition-transform duration-200',
-            open && 'rotate-180'
+            isOpen && 'rotate-180'
           )}
         />
       </button>
-      {open && (
+      {isOpen && (
         <div className="ml-4 mt-1 space-y-0.5 border-l border-border pl-2">
           {item.children!.map((child) => {
             const isChildActive = child.href === activeHref;
@@ -133,6 +136,16 @@ function SidebarContent() {
     .filter((href) => pathname === href || pathname.startsWith(href + '/'))
     .sort((a, b) => b.length - a.length)[0] ?? null;
 
+  // Akordion: aktif child'ı olan grubu başlangıçta aç, sadece bir grup açık kalır
+  const initialOpenHref = visibleMenuItems.find(
+    (item) => item.children?.length && (item.children.some(c => c.href === activeHref) || item.href === activeHref)
+  )?.href ?? null;
+  const [openAccordionHref, setOpenAccordionHref] = useState<string | null>(initialOpenHref);
+
+  const handleAccordionToggle = (href: string) => {
+    setOpenAccordionHref((prev) => (prev === href ? null : href));
+  };
+
   return (
     <div className="flex h-full flex-col">
       {/* Logo */}
@@ -152,6 +165,8 @@ function SidebarContent() {
                 item={item}
                 collapsed={sidebarCollapsed}
                 activeHref={activeHref}
+                isOpen={openAccordionHref === item.href}
+                onToggle={() => handleAccordionToggle(item.href)}
               />
             );
           }

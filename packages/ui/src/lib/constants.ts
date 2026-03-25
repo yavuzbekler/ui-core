@@ -52,16 +52,29 @@ import {
 } from 'lucide-react';
 
 export const STATUS_COLORS: Record<string, string> = {
-  active: 'bg-green-100 text-green-800',
-  suspended: 'bg-red-100 text-red-800',
-  trial: 'bg-yellow-100 text-yellow-800',
-  cancelled: 'bg-gray-100 text-gray-800',
-  draft: 'bg-slate-100 text-slate-800',
-  paused: 'bg-orange-100 text-orange-800',
-  completed: 'bg-blue-100 text-blue-800',
-  pending: 'bg-yellow-100 text-yellow-800',
-  failed: 'bg-red-100 text-red-800',
-  refunded: 'bg-purple-100 text-purple-800',
+  active: 'bg-green-100 text-green-800 dark:bg-[#1C1C1E] dark:text-[#4ade80]',
+  suspended: 'bg-red-100 text-red-800 dark:bg-[#1C1C1E] dark:text-[#f87171]',
+  trial: 'bg-yellow-100 text-yellow-800 dark:bg-[#1C1C1E] dark:text-[#facc15]',
+  cancelled: 'bg-gray-100 text-gray-800 dark:bg-[#1C1C1E] dark:text-[#9ca3af]',
+  draft: 'bg-slate-100 text-slate-800 dark:bg-[#1C1C1E] dark:text-[#94a3b8]',
+  paused: 'bg-orange-100 text-orange-800 dark:bg-[#1C1C1E] dark:text-[#fb923c]',
+  completed: 'bg-blue-100 text-blue-800 dark:bg-[#1C1C1E] dark:text-[#60a5fa]',
+  pending: 'bg-yellow-100 text-yellow-800 dark:bg-[#1C1C1E] dark:text-[#facc15]',
+  failed: 'bg-red-100 text-red-800 dark:bg-[#1C1C1E] dark:text-[#f87171]',
+  refunded: 'bg-purple-100 text-purple-800 dark:bg-[#1C1C1E] dark:text-[#a78bfa]',
+};
+
+export const STATUS_BORDER_COLORS: Record<string, string> = {
+  active: '#4ade80',
+  suspended: '#f87171',
+  trial: '#facc15',
+  cancelled: '#9ca3af',
+  draft: '#94a3b8',
+  paused: '#fb923c',
+  completed: '#60a5fa',
+  pending: '#facc15',
+  failed: '#f87171',
+  refunded: '#a78bfa',
 };
 
 export const CAMPAIGN_TYPE_LABELS: Record<string, string> = {

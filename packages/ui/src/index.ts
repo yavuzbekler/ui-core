@@ -5,12 +5,14 @@ export type { StkUIConfig, SidebarMenuItem, SidebarMenuChild, UserNavItem, UserP
 
 // Providers
 export { StkUIProvider, useStkUI } from './providers/stk-ui-provider';
-export { ThemeProvider, useAccentColor, useBackgroundTheme, useStylePreset } from './components/providers/theme-provider';
+export { ThemeProvider, useAccentColor, useBackgroundTheme, useStylePreset, useMenuLayout } from './components/providers/theme-provider';
+export type { MenuLayoutName } from './components/providers/theme-provider';
 export { ToastProvider } from './components/providers/toast-provider';
 
 // Layout
 export { DashboardShell } from './components/layout/dashboard-shell';
 export { Sidebar, MobileSidebar } from './components/layout/sidebar';
+export { TopNavbar } from './components/layout/top-navbar';
 export { Header } from './components/layout/header';
 export { Breadcrumb } from './components/layout/breadcrumb';
 export { UserNav } from './components/layout/user-nav';
@@ -29,6 +31,7 @@ export { ThemeToggle } from './components/shared/theme-toggle';
 export { AccentColorPicker } from './components/shared/accent-color-picker';
 export { BackgroundThemePicker } from './components/shared/background-theme-picker';
 export { StylePicker } from './components/shared/style-picker';
+export { MenuLayoutPicker } from './components/shared/menu-layout-picker';
 export { LoadingSpinner } from './components/shared/loading-spinner';
 export { Logo } from './components/shared/logo';
 export { Combobox } from './components/shared/combobox';
