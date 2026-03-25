@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@yavuzbekler/tokens/css";
+@import "@yvz-ui-core/tokens/css";
 
 @custom-variant dark (&:is(.dark *));
 

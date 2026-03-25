@@ -1,8 +1,8 @@
-// Re-export accent colors from @yavuzbekler/tokens (single source of truth)
+// Re-export accent colors from @yvz-ui-core/tokens (single source of truth)
 export {
   ACCENT_COLORS,
   ACCENT_COLOR_NAMES,
   DEFAULT_ACCENT,
-} from '@yavuzbekler/tokens';
+} from '@yvz-ui-core/tokens';
 
-export type { AccentColorName, AccentColorPair } from '@yavuzbekler/tokens';
+export type { AccentColorName, AccentColorPair } from '@yvz-ui-core/tokens';
