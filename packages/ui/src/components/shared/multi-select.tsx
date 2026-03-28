@@ -4,7 +4,6 @@ import * as React from 'react';
 import { Check, ChevronsUpDown, X } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { Badge } from '../ui/badge';
-import { Button } from '../ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '../ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 
@@ -66,13 +65,13 @@ function MultiSelect({
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button
-          variant="outline"
+        <button
+          type="button"
           role="combobox"
           aria-expanded={open}
           disabled={disabled}
           className={cn(
-            'w-full justify-between font-normal h-auto min-h-10',
+            'flex w-full items-center justify-between rounded-md border border-input bg-card px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 h-auto min-h-10',
             !value.length && 'text-muted-foreground',
             className
           )}
@@ -82,7 +81,7 @@ function MultiSelect({
             {selectedLabels.slice(0, maxCount).map((opt) => (
               <Badge
                 key={opt.value}
-                variant="secondary"
+                variant="default"
                 className="rounded-sm px-1.5 py-0 text-xs font-normal"
               >
                 {opt.label}
@@ -91,12 +90,12 @@ function MultiSelect({
                   onMouseDown={(e) => e.preventDefault()}
                   onClick={(e) => handleRemove(opt.value, e)}
                 >
-                  <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
+                  <X className="h-3 w-3 text-primary-foreground/70 hover:text-primary-foreground" />
                 </button>
               </Badge>
             ))}
             {selectedLabels.length > maxCount && (
-              <Badge variant="secondary" className="rounded-sm px-1.5 py-0 text-xs font-normal">
+              <Badge variant="default" className="rounded-sm px-1.5 py-0 text-xs font-normal">
                 +{selectedLabels.length - maxCount} daha
               </Badge>
             )}
@@ -113,7 +112,7 @@ function MultiSelect({
             )}
             <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
           </div>
-        </Button>
+        </button>
       </PopoverTrigger>
       <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
         <Command>

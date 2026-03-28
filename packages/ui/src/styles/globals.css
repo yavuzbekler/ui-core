@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@yvz-ui-core/tokens/css";
+@import "@yavuzbekler/tokens/css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -102,4 +102,14 @@ html, body {
 [data-radix-popper-content-wrapper] > * {
   border-width: var(--border-w, 1px);
   box-shadow: var(--shadow-card, none);
+}
+
+/* Badge, Chip & action button shadows — scaled-down version of card shadow */
+[data-slot="badge"],
+[data-slot="chip"],
+[data-slot="button"][data-variant="default"],
+[data-slot="button"][data-variant="destructive"],
+[data-slot="button"][data-variant="secondary"] {
+  border-width: var(--border-w, 1px);
+  box-shadow: var(--shadow-badge, none);
 }

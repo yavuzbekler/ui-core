@@ -3,16 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "description": "UI Core - Admin, Web, Mobile monorepo",
-  "workspaces": [
-    "packages/*",
-    "admin",
-    "web",
-    "mobile"
-  ],
   "scripts": {
     "dev:admin": "turbo run dev --filter=admin",
     "dev:web": "turbo run dev --filter=web",
-    "dev:mobile": "cd mobile && npx expo start --port 1502",
+    "dev:mobile": "cd mobile && pnpm exec expo start --port 1502",
     "build": "turbo run build",
     "build:admin": "turbo run build --filter=admin",
     "build:web": "turbo run build --filter=web",
@@ -22,10 +16,13 @@
     "version-packages": "changeset version",
     "release": "changeset publish"
   },
-  "packageManager": "npm@11.6.2",
-  "overrides": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+  "packageManager": "pnpm@10.8.1",
+  "pnpm": {
+    "overrides": {
+      "react": "19.1.0",
+      "react-dom": "19.1.0"
+    },
+    "onlyBuiltDependencies": ["sharp"]
   },
   "devDependencies": {
     "@changesets/cli": "^2.30.0",

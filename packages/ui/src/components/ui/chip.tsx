@@ -24,7 +24,7 @@ export interface ChipProps extends React.HTMLAttributes<HTMLSpanElement>, Varian
 }
 
 function Chip({ className, variant, ...props }: ChipProps) {
-  return <span className={cn(chipVariants({ variant }), className)} {...props} />;
+  return <span data-slot="chip" className={cn(chipVariants({ variant }), className)} {...props} />;
 }
 
 export { Chip, chipVariants };

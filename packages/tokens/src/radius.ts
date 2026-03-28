@@ -14,11 +14,15 @@ export interface StylePreset {
   radius: string;
   borderWidth: string;
   shadow: string;
+  /** Scaled-down shadow for badge/chip elements */
+  shadowBadge: string;
   /** Override border/shadow color per mode (for neobrutalism etc.) */
   borderColorLight?: string;
   borderColorDark?: string;
   shadowLight?: string;
   shadowDark?: string;
+  shadowBadgeLight?: string;
+  shadowBadgeDark?: string;
 }
 
 export const STYLE_PRESETS: Record<StylePresetName, StylePreset> = {
@@ -26,40 +30,49 @@ export const STYLE_PRESETS: Record<StylePresetName, StylePreset> = {
     radius: '0rem',
     borderWidth: '1px',
     shadow: 'none',
+    shadowBadge: 'none',
   },
   'sharp-bold': {
     radius: '0rem',
     borderWidth: '2px',
     shadow: '0 8px 32px -4px rgba(0,0,0,0.3)',
+    shadowBadge: '0 2px 8px -2px rgba(0,0,0,0.2)',
   },
   default: {
     radius: '0.75rem',
     borderWidth: '1px',
     shadow: 'none',
+    shadowBadge: 'none',
   },
   'default-bold': {
     radius: '0.75rem',
     borderWidth: '2px',
     shadow: '0 8px 32px -4px rgba(0,0,0,0.3)',
+    shadowBadge: '0 2px 8px -2px rgba(0,0,0,0.2)',
   },
   round: {
     radius: '1.25rem',
     borderWidth: '1px',
     shadow: 'none',
+    shadowBadge: 'none',
   },
   'round-bold': {
     radius: '1.25rem',
     borderWidth: '2px',
     shadow: '0 8px 32px -4px rgba(0,0,0,0.3)',
+    shadowBadge: '0 2px 8px -2px rgba(0,0,0,0.2)',
   },
   neobrutalism: {
     radius: '0rem',
     borderWidth: '2px',
     shadow: '4px 4px 0 0 #262626',
+    shadowBadge: '2px 2px 0 0 #262626',
     borderColorLight: '#262626',
     borderColorDark: 'rgba(255,255,255,0.25)',
     shadowLight: '4px 4px 0 0 #262626',
     shadowDark: '4px 4px 0 0 #E8E8EC',
+    shadowBadgeLight: '2px 2px 0 0 #262626',
+    shadowBadgeDark: '2px 2px 0 0 #E8E8EC',
   },
 };
 

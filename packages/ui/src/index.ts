@@ -19,6 +19,7 @@ export { UserNav } from './components/layout/user-nav';
 
 // Shared components
 export { DataTable } from './components/shared/data-table';
+export type { DataTableFilterTab, DataTableFilterOption, SelectFilterValue, NumberFilterValue } from './components/shared/data-table';
 export { SlideOverSheet } from './components/shared/slide-over-sheet';
 export { DetailPanel } from './components/shared/detail-panel';
 export { FullScreenPanel } from './components/shared/full-screen-panel';
@@ -38,6 +39,8 @@ export { Combobox } from './components/shared/combobox';
 export type { ComboboxOption } from './components/shared/combobox';
 export { MultiSelect } from './components/shared/multi-select';
 export type { MultiSelectOption } from './components/shared/multi-select';
+export { CellSelect } from './components/shared/cell-select';
+export type { CellSelectOption } from './components/shared/cell-select';
 export { DatePicker } from './components/shared/date-picker';
 
 // UI primitives
